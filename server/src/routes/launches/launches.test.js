@@ -5,11 +5,15 @@ const {
     disconnectToMongo
  } = require("../../services/mongo");
 
+ const { 
+    isPlanetAvailable
+} = require("../../models/planets.model")
 
 describe("Tests with prerequisites",() => {
     // beforeAll() is a setup function for setting up the environment for tests
     beforeAll(async ()=> {
         await connectToMongo() // this mongo connection stays on after all tests are completed so jest is not exited and that gives an error
+        await isPlanetAvailable()
     })
 
     afterAll(async () => {
