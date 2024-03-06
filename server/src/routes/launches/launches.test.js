@@ -23,7 +23,7 @@ describe("Tests with prerequisites",() => {
         test("It should respond with 200",async () =>{
             //a test case
             await request(app)
-            .get("/launches")
+            .get("/v1/launches")
             .expect(200)
             .expect("Content-Type",/json/)
         })
@@ -46,7 +46,7 @@ describe("Tests with prerequisites",() => {
     
         test("It should respond with 201 created", async () => {
             const response = await request(app)
-             .post("/launches/add")
+             .post("/v1/launches/add")
              .send(completeLaunchData)
              .expect(201) 
              .expect("Content-Type",/json/);
@@ -67,7 +67,7 @@ describe("Tests with prerequisites",() => {
     
         test("It should catch missing required properties",async () => {
             const response = await request(app)
-                .post("/launches/add")
+                .post("/v1/launches/add")
                 .send({
                 mission:"sadjsa"
                 })
@@ -81,7 +81,7 @@ describe("Tests with prerequisites",() => {
     
         test("It should catch invalid date format", async () => {
             const response = await request(app)
-                .post("/launches/add")
+                .post("/v1/launches/add")
                 .send({
                 ...completeLaunchData,
                 launchDate:"feb 88 3333"
